@@ -15,19 +15,16 @@ jobs:
       - node/install:
           node-version: "14.15"
       - checkout
+      - aws-cli/setup
       # Use root level package.json to install dependencies in the frontend app
       - run:
-          name: Install Front-End Dependencies
+          name: Frontend Install
           command: |
             echo "NODE --version" 
             echo $(node --version)
             echo "NPM --version" 
             echo $(npm --version)
             npm run frontend:install
-      - run:
-          name: Frontend Install
-          command: |
-            npm run api:install
       - run:
           name: Backend Install
           command: |
@@ -54,7 +51,7 @@ jobs:
       - run:
           name: Frontend Install
           command: |
-            npm run api:install
+            npm run frontend:install
       - run:
           name: Backend Install
           command: |
